@@ -9,6 +9,8 @@
     <div id="app">
         <input type="text" v-model="message">
         {{ message }}
+
+        <button :class="buttonColor" v-on:click="toggle">Click Me</button>
     </div>
 
 <script>
@@ -17,8 +19,14 @@
   createApp({
     data() {
       return {
-        message: 'Hello Vue!'
+        message: 'Hello Vue!',
+        buttonColor: 'text-green'
       }
+    },
+    methods: {
+        toggle() {
+            alert('Hello');
+        }
     }
   }).mount('#app')
 </script>
