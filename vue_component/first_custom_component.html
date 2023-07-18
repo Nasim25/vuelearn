@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin | Dashboard</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+      <my-component>Submit</my-component>
+      <my-component>Click Me</my-component>
+    </div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    components: {
+      'my-component': {
+        template: `
+          <button :disabled="processing">
+            <slot>
+          </button>
+        `
+      }
+    },
+    data() {
+        return {
+            processing: true
+        }
+    },
+  }).mount('#app')
+</script>
+</body>
+</html>
