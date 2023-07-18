@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+        <section v-show="incompleteAssignments.length">
+          <h2>Progress</h2>
+          <ul class="list-group">
+            <li class="list-group-item active" aria-current="true" v-for="message in incompleteAssignments" :key="message.id">
+              <label>
+                {{message.name}}
+              <input type="checkbox" v-model="message.status">
+              </label>
+            </li>
+        </ul>
+        </section>
+          <hr>
+        
+          <section v-show="completedAssignments.length">
+            <h2>Completed</h2>
+            <ul class="list-group">
+              <li class="list-group-item active" aria-current="true" v-for="message in completedAssignments" :key="message.id">
+                <label>
+                  {{message.name}}
+                <input type="checkbox" v-model="message.status">
+                </label>
+              </li>
+            </ul>
+          </section>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        Vue.createApp({
+            
+            data() {
+                return {
+                    assignments: [
+                        {status: false, name: 'One',id:1},
+                        {status: false, name: 'Two',id:2},
+                        {status: false, name: 'Three',id:3},
+                        {status: false, name: 'Foure',id:4},
+                    ]
+                }
+            },
+            computed: {
+              completedAssignments() {
+                return this.assignments.filter(a => a.status);
+              },
+              incompleteAssignments() {
+                return this.assignments.filter(a => ! a.status);
+              }
+            }
+
+        }).mount('#app')
+    </script>
+   
+  </body>
+</html>
